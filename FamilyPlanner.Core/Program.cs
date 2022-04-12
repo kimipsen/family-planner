@@ -1,3 +1,4 @@
+using FamilyPlanner.Core.Data;
 using FamilyPlanner.Core.Schema;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,8 @@ builder.Services
 	.AddGraphQLServer()
 	.AddQueryType<FamilyPlannerQueryRoot>()
 	.AddTypeExtension<RecipeQueryRoot>();
+
+builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
 
 var app = builder.Build();
 
