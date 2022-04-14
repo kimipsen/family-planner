@@ -13,5 +13,11 @@ RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
 
+ENV TASK_VERSION=3.12.0
+
+RUN wget https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_linux_amd64.deb \
+	&& dpkg -i task_linux_amd64.deb \
+	&& rm task_linux_amd64.deb
+
 RUN dotnet tool install -g dotnet-ef
 ENV PATH $PATH:/root/.dotnet/tools

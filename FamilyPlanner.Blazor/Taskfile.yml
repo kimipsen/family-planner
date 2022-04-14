@@ -1,0 +1,48 @@
+# https://taskfile.dev
+
+version: "3"
+
+vars:
+  VERSION: 0.0.1
+  SVC: familyplannerblazor
+  IMG: "{{.SVC}}"
+  REPO: "{{.SVC}}"
+
+tasks:
+  docker:build:
+    cmds:
+      - docker build --progress plain -t "{{.IMG}}:latest" .
+      - docker tag "{{.IMG}}:latest" "{{.IMG}}:{{.VERSION}}"
+
+  docker:push:
+    deps: [docker:build]
+    cmds:
+      - docker tag "{{.IMG}}:latest" "{{.REPO}}/{{.IMG}}:latest"
+      - docker tag "{{.IMG}}:latest" "{{.REPO}}/{{.IMG}}:{{.VERSION}}"
+      - docker push "{{.REPO}}/{{.IMG}}:latest"
+      - docker push "{{.REPO}}/{{.IMG}}:{{.VERSION}}"
+
+  docker:run:
+    deps: [docker:build]
+    cmds:
+      - docker run -it --rm -p 7001:7001 "{{.IMG}}"
+
+  docker:shell-run:
+    cmds:
+      - docker run -it --rm --user 0 --entrypoint /bin/sh "{{.IMG}"
+
+  compose:up:
+    cmds:
+      - docker-compose up
+
+  compose:down:
+    cmds:
+      - docker-compose down
+
+  compose:shell-exec:
+    cmds:
+      - docker-compose exec --user 0 "{{.SVC}}" /bin/sh
+
+  compose:shell-run:
+    cmds:
+      - docker-compose run --rm --entrypoint /bin/sh "{{.SVC}}"
