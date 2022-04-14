@@ -6,7 +6,7 @@ ENV ASPNETCORE_URLS=http://+:7001
 
 ## build
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
-WORKDIR /
+WORKDIR /src
 COPY *.csproj .
 RUN dotnet restore
 
