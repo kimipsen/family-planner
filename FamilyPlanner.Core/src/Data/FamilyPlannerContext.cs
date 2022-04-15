@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FamilyPlanner.Core.Data;
 
-public class FamilyPlannerContext : DbContext, IFamilyPlannerContext
+public class FamilyPlannerContext : DbContext
 {
 	public FamilyPlannerContext(DbContextOptions<FamilyPlannerContext> options) : base(options)
 	{
@@ -18,4 +18,5 @@ public class FamilyPlannerContext : DbContext, IFamilyPlannerContext
 
 	public DbSet<Tag> Tags { get; set; }
 	public DbSet<Recipe> Recipes { get; set; }
+	public DbSet<FoodPlan> FoodPlans { get; set; }
 }

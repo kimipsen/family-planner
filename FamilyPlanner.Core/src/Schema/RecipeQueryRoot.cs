@@ -6,5 +6,5 @@ namespace FamilyPlanner.Core.Schema;
 [ExtendObjectType(typeof(FamilyPlannerQueryRoot))]
 public class RecipeQueryRoot
 {
-	public IEnumerable<Recipe> GetRecipes([Service] IRecipeRepository recipeRepository, string[] tags) => recipeRepository.GetRecipes(tags);
+	public IEnumerable<Recipe> GetRecipes(FamilyPlannerContext context, string[] tags) => context.Recipes.Where(r => r.Tags.Any(t => tags.Contains(t.Name)));
 }

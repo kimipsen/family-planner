@@ -46,3 +46,7 @@ tasks:
   compose:shell-run:
     cmds:
       - docker-compose run --rm --entrypoint /bin/sh "{{.SVC}}"
+
+  migrations:add:
+    cmds:
+      - dotnet ef migrations add "{{.CLI_ARGS}}"
