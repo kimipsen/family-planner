@@ -1,7 +1,9 @@
 using FamilyPlanner.Core.Data;
 using FamilyPlanner.Core.Schema;
 using FamilyPlanner.Core.Services;
+using HotChocolate.Types.NodaTime;
 using Microsoft.EntityFrameworkCore;
+using NodaTime;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,14 +15,18 @@ builder.Services
 	.AddQueryType<FamilyPlannerQueryRoot>()
 	.AddTypeExtension<RecipeQueryRoot>()
 	.AddTypeExtension<TagQueryRoot>()
+	.AddTypeExtension<FoodPlanQueryRoot>()
 	.AddMutationType<FamilyPlannerMutationRoot>()
 	.AddTypeExtension<RecipeMutationRoot>()
-	.AddTypeExtension<TagMutationRoot>();
+	.AddTypeExtension<TagMutationRoot>()
+	.AddTypeExtension<FoodPlanMutationRoot>()
+	.AddType<LocalDateType>();
 
 // builder.Services.AddTransient<FamilyPlannerContext>();
 builder.Services.AddTransient<TagService>();
 builder.Services.AddTransient<RecipeService>();
 builder.Services.AddTransient<FoodPlanService>();
+builder.Services.AddSingleton<IClock>(SystemClock.Instance);
 
 var app = builder.Build();
 
