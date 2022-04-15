@@ -10,7 +10,10 @@ builder.Services
 	.AddGraphQLServer()
 	.AddQueryType<FamilyPlannerQueryRoot>()
 	.AddTypeExtension<RecipeQueryRoot>()
-	.AddTypeExtension<TagQueryRoot>();
+	.AddTypeExtension<TagQueryRoot>()
+	.AddMutationType<FamilyPlannerMutationRoot>()
+	.AddTypeExtension<RecipeMutationRoot>()
+	.AddTypeExtension<TagMutationRoot>();
 
 builder.Services.AddTransient<IFamilyPlannerContext, FamilyPlannerContext>();
 builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();

@@ -12,9 +12,13 @@ public class TagRepository : ITagRepository
 		_context = context;
 	}
 
-	public Tag Create(string name)
+	public Tag Create(string name, TagPurpose purpose)
 	{
-		var entity = new Tag();
+		var entity = new Tag()
+		{
+			Name = name,
+			Purpose = purpose
+		};
 		_context.Tags.Add(entity);
 		_context.SaveChanges();
 		return entity;
