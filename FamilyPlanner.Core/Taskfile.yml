@@ -47,6 +47,14 @@ tasks:
     cmds:
       - docker-compose run --rm --entrypoint /bin/sh "{{.SVC}}"
 
-  migrations:add:
+  migrations:add:postgresql:
     cmds:
-      - dotnet ef migrations add "{{.CLI_ARGS}}"
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.PostgreSqlFamilyPlannerContext
+
+  migrations:add:sqlite:
+    cmds:
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.SqliteFamilyPlannerContext
+
+  migrations:add:mssql:
+    cmds:
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.MssqlFamilyPlannerContext

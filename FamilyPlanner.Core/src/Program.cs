@@ -1,14 +1,14 @@
+using FamilyPlanner.Core;
 using FamilyPlanner.Core.Data;
 using FamilyPlanner.Core.Schema;
 using FamilyPlanner.Core.Services;
 using HotChocolate.Types.NodaTime;
-using Microsoft.EntityFrameworkCore;
 using NodaTime;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<FamilyPlannerContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("FamilyPlanner"), o => o.UseNodaTime()));
+builder.Services.SetupDbContext(builder.Configuration);
 builder.Services
 	.AddGraphQLServer()
 	.RegisterDbContext<FamilyPlannerContext>()
