@@ -9,10 +9,12 @@ builder.Services.AddDbContext<FamilyPlannerContext>(options => options.UseNpgsql
 builder.Services
 	.AddGraphQLServer()
 	.AddQueryType<FamilyPlannerQueryRoot>()
-	.AddTypeExtension<RecipeQueryRoot>();
+	.AddTypeExtension<RecipeQueryRoot>()
+	.AddTypeExtension<TagQueryRoot>();
 
 builder.Services.AddTransient<IFamilyPlannerContext, FamilyPlannerContext>();
 builder.Services.AddTransient<IRecipeRepository, RecipeRepository>();
+builder.Services.AddTransient<ITagRepository, TagRepository>();
 
 var app = builder.Build();
 
