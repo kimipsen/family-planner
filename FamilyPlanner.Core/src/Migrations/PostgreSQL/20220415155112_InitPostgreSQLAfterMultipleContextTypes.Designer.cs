@@ -10,11 +10,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace FamilyPlanner.Core.Data.Migrations
+namespace FamilyPlanner.Core.src.migrations.PostgreSQL
 {
-    [DbContext(typeof(FamilyPlannerContext))]
-    [Migration("20220415131920_IsoDayOfWeekAsArray")]
-    partial class IsoDayOfWeekAsArray
+    [DbContext(typeof(PostgreSqlFamilyPlannerContext))]
+    [Migration("20220415155112_InitPostgreSQLAfterMultipleContextTypes")]
+    partial class InitPostgreSQLAfterMultipleContextTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -45,5 +45,14 @@ services:
     depends_on:
       - db
 
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=F@miLyplanner1
+    ports:
+      - 1433:1433
+
 volumes:
   postgres-data: null

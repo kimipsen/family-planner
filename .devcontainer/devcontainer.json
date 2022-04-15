@@ -12,7 +12,8 @@
 		"ms-dotnettools.csharp",
 		// "ms-azuretools.vscode-docker",
 		"EditorConfig.EditorConfig",
-		"VisualStudioExptTeam.vscodeintellicode"
+		"VisualStudioExptTeam.vscodeintellicode",
+		"ms-mssql.mssql"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [

@@ -8,7 +8,7 @@ public class SqliteFamilyPlannerContextFactory : IDesignTimeDbContextFactory<Sql
     public SqliteFamilyPlannerContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<FamilyPlannerContext>();
-        optionsBuilder.UseSqlite("Data Source=database/familyplanner.db");
+		optionsBuilder.UseSqlite("Data Source=database/familyplanner.db", o => o.UseNodaTime());
 
         return new SqliteFamilyPlannerContext(optionsBuilder.Options);
     }
@@ -18,7 +18,7 @@ public class SqliteFamilyPlannerContextFactory : IDesignTimeDbContextFactory<Sql
         var optionsBuilder = new DbContextOptionsBuilder<FamilyPlannerContext>()
             .UseSqlite(
                 connectionString,
-                b => b.MigrationsAssembly("FamilyPlanner.Core"));
+                o => o.MigrationsAssembly("FamilyPlanner.Core").UseNodaTime());
         return new SqliteFamilyPlannerContext(optionsBuilder.Options);
     }
 }

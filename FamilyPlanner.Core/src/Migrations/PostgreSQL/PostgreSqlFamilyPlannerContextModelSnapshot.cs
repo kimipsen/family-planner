@@ -3,20 +3,18 @@ using System;
 using FamilyPlanner.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace FamilyPlanner.Core.Data.Migrations
+namespace FamilyPlanner.Core.src.migrations.PostgreSQL
 {
-    [DbContext(typeof(FamilyPlannerContext))]
-    [Migration("20220415123817_FoodPlanWIP2")]
-    partial class FoodPlanWIP2
+    [DbContext(typeof(PostgreSqlFamilyPlannerContext))]
+    partial class PostgreSqlFamilyPlannerContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,8 +54,9 @@ namespace FamilyPlanner.Core.Data.Migrations
                     b.Property<LocalDate>("StartDate")
                         .HasColumnType("date");
 
-                    b.Property<int>("WeekDays")
-                        .HasColumnType("integer");
+                    b.Property<string>("WeekDays")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

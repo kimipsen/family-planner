@@ -4,6 +4,6 @@
 	{
 		PostgreSql = 1,
 		Sqlite = 2,
-		Mssql = 3,
+		SqlServer = 3,
 	}
 }

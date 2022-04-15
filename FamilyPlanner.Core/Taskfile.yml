@@ -47,14 +47,20 @@ tasks:
     cmds:
       - docker-compose run --rm --entrypoint /bin/sh "{{.SVC}}"
 
+  migrations:add:
+    cmds:
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.PostgreSqlFamilyPlannerContext --output-dir src/migrations/PostgreSQL
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.SqliteFamilyPlannerContext --output-dir src/migrations/Sqlite
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.SqlServerFamilyPlannerContext --output-dir src/migrations/SqlServer
+
   migrations:add:postgresql:
     cmds:
-      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.PostgreSqlFamilyPlannerContext
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.PostgreSqlFamilyPlannerContext --output-dir src/migrations/PostgreSQL
 
   migrations:add:sqlite:
     cmds:
-      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.SqliteFamilyPlannerContext
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.SqliteFamilyPlannerContext --output-dir src/migrations/Sqlite
 
   migrations:add:mssql:
     cmds:
-      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.MssqlFamilyPlannerContext
+      - dotnet ef migrations add "{{.CLI_ARGS}}" --context FamilyPlanner.Core.Data.SqlServerFamilyPlannerContext --output-dir src/migrations/SqlServer

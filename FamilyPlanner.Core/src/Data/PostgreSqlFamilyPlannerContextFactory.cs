@@ -8,7 +8,7 @@ public class PostgreSqlFamilyPlannerContextFactory : IDesignTimeDbContextFactory
 	public PostgreSqlFamilyPlannerContext CreateDbContext(string[] args)
 	{
 		var optionsBuilder = new DbContextOptionsBuilder<FamilyPlannerContext>();
-		optionsBuilder.UseNpgsql("Server=db;Port=5432;Database=postgres;User Id=postgres;Password=postgres;");
+		optionsBuilder.UseNpgsql("Server=db;Port=5432;Database=postgres;User Id=postgres;Password=postgres;", o => o.UseNodaTime());
 
 		return new PostgreSqlFamilyPlannerContext(optionsBuilder.Options);
 	}
@@ -18,7 +18,7 @@ public class PostgreSqlFamilyPlannerContextFactory : IDesignTimeDbContextFactory
 		var optionsBuilder = new DbContextOptionsBuilder<FamilyPlannerContext>()
 			.UseNpgsql(
 				connectionString,
-				b => b.MigrationsAssembly("FamilyPlanner.Core"));
+				o => o.MigrationsAssembly("FamilyPlanner.Core").UseNodaTime());
 		return new PostgreSqlFamilyPlannerContext(optionsBuilder.Options);
 	}
 }

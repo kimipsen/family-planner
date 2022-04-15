@@ -28,12 +28,12 @@ namespace FamilyPlanner.Core
 					if (sqliteContext.Database.GetPendingMigrations().Any()) sqliteContext.Database.Migrate();
 					break;
 
-				case Provider.Mssql:
+				case Provider.SqlServer:
 					services.AddDbContext<FamilyPlannerContext>(options =>
 						options.UseSqlServer(configuration.GetConnectionString(ConnectionStringName), o => o.UseNodaTime()));
 
-					var mssqlContext = new MssqlFamilyPlannerContextFactory().CreateDbContext(configuration.GetConnectionString(ConnectionStringName));
-					if (mssqlContext.Database.GetPendingMigrations().Any()) mssqlContext.Database.Migrate();
+					var sqlServerContext = new SqlServerFamilyPlannerContextFactory().CreateDbContext(configuration.GetConnectionString(ConnectionStringName));
+					if (sqlServerContext.Database.GetPendingMigrations().Any()) sqlServerContext.Database.Migrate();
 					break;
 			}
 
