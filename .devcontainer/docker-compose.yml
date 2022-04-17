@@ -9,7 +9,7 @@ services:
         # Update 'VARIANT' to pick a version of .NET: 3.1, 5.0, 6.0
         VARIANT: "6.0"
         # Optional version of Node.js
-        NODE_VERSION: "none"
+        NODE_VERSION: "16"
 
     volumes:
       - ..:/workspace:cached
@@ -22,7 +22,7 @@ services:
     # Uncomment the next line to use a non-root user for all processes.
     # user: vscode
 
-    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
@@ -34,7 +34,7 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
       POSTGRES_DB: postgres
-  
+
   dbmanagement:
     image: dpage/pgadmin4:6.8
     environment:
